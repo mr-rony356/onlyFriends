@@ -9,27 +9,27 @@ import Head from "next/head";
 import Image from "next/image";
 import { router } from "next/router";
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import useScrollRestoration from "src/hooks/useScrollRestoration";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export async function getServerSideProps({ req, locale }) {
   // Initialize the API helper class
   const api = new ApiController();
+  
   // Authenticate the user
-  const auth = req.cookies.Auth ? JSON.parse(req.cookies.Auth) : "";
+  const auth = req.cookies.Auth ? JSON.parse(req.cookies.Auth) : '';
   const user = await api.checkAuth(auth.token);
+  
   // Fetch all props server side
-  const lang = locale === "de" ? "de" : "en";
+  const lang = locale === 'de' ? 'de' : 'en';
   const attributes = await api.fetchAttributes(lang);
   const ads = await api.fetchAds(0);
   const premiumAds = await api.fetchPremiumAds(0);
+  
   // Return all props to the page
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common", "footer"], null, [
-        "en",
-        "de",
-      ])),
+      ...(await serverSideTranslations(locale, ['common', 'footer'])),
       user,
       attributes,
       initialAds: ads,
@@ -37,7 +37,6 @@ export async function getServerSideProps({ req, locale }) {
     },
   };
 }
-
 function HomePage({ user, attributes, initialAds, premiumAds }) {
   useScrollRestoration(router);
   const { t } = useTranslation("common");
