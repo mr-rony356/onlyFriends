@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "server/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",  
+      "dest": "/server/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/$1"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "DATABASE_NAME": "your-database-name",
+    "FRONTEND_URL": "https://onlyfriend.ch",
+    "FRONTEND_URL_WWW": "https://www.onlyfriend.ch"
+  }
+}
