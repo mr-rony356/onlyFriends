@@ -51,7 +51,7 @@ server
     // Allow CORS
     app.use(
       cors({
-        origin: [process.env.FRONTEND_URL, process.env.FRONTEND_URL_WWW,'https://onlyfriend.ch'],
+        origin: [process.env.FRONTEND_URL, process.env.FRONTEND_URL_WWW],
       }),
     );
 
