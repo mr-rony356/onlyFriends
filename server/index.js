@@ -19,8 +19,7 @@ const payrexx = require("./utils/payrexx/payrexx");
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 // Port and DB address
-const SERVER_PORT = process.env.SERVER_PORT;
-
+const port = process.env.PORT || 8080;
 // Payment setup
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -1932,8 +1931,8 @@ server
     });
 
     // Listen on port
-    app.listen(SERVER_PORT, "127.0.0.1", () => {
-      console.log(`Server listening on ${SERVER_PORT}`);
+    app.listen(port, "127.0.0.1", () => {
+      console.log(`Server listening on ${port}`);
     });
   })
   .catch((ex) => {
