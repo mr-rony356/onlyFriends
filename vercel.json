@@ -21,8 +21,8 @@
     }
   ],
   "env": {
-    "DATABASE_URL": "@database_url",
-    "DATABASE_NAME": "your-database-name",
+    "DATABASE_URL": "@mongodb://admin:tBL7Tu6aVJdIdtH@217.26.51.66:27017",
+    "DATABASE_NAME": "onlyfriend",
     "FRONTEND_URL": "https://onlyfriend.ch",
     "FRONTEND_URL_WWW": "https://www.onlyfriend.ch"
   }

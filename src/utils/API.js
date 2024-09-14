@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
  */
 export const API_ADDRESS =
   process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
-    ? "https://onlyfriends-production-84ef.up.railway.app"
+    ? "https://onlyfriend.ch/"
     : "http://localhost:3000/";
 
 /**
