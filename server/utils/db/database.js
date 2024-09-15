@@ -5,10 +5,7 @@ const { MongoClient } = require("mongodb");
 // Switch between .env.development and .env.production state
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
-const client = new MongoClient(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const client = new MongoClient(process.env.DATABASE_URL);
 
 const database = async (req, res, next) => {
   req.dbClient = client;
