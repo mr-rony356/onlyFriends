@@ -19,7 +19,7 @@ const payrexx = require("./utils/payrexx/payrexx");
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 // Port and DB address
-const port = process.env.PORT || 8080;
+const SERVER_PORT = process.env.SERVER_PORT;
 // Payment setup
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
