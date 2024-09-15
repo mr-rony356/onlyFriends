@@ -94,7 +94,7 @@ const Messages = ({ user, messages, groupedMessages }) => {
                     >
                       <div className="card ">
                         <div className="messages__flex">
-                          <Image
+                          <img
                             src={
                               groupedMessages[group][0].from[0].name ===
                               user.name
@@ -107,8 +107,8 @@ const Messages = ({ user, messages, groupedMessages }) => {
                                     groupedMessages[group][0].from[0].image
                                   : userIcon
                             }
-                            width={500}
-                            height={500}
+                            width={100}
+                            height={100}
                             alt="user-icon"
                             className={
                               groupedMessages[group][0].from[0].name ===

@@ -60,14 +60,14 @@ const AdminLandingPage = ({ user, attributes, ad, message }) => {
               >
                 <div className="card ">
                   <div className="messages__flex">
-                    <Image
+                    <img
                       src={
                         message.from[0].image
                           ? API_ADDRESS + message.from[0].image
                           : userIcon
                       }
-                      width={500}
-                      height={500}
+                      width={100}
+                      height={100}
                       alt="user-icon"
                       className={
                         message.from[0].image

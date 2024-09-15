@@ -187,10 +187,10 @@ function HomePage({
                       {value.name} {t("home__ad")}
                     </button>
                   ))}
-              <Image
+              <img
                 src={"/assets/filter.png"}
-                width={500}
-                height={500}
+                width={100}
+                height={100}
                 alt="filter"
                 className="filter"
                 onClick={toggleFilter}
