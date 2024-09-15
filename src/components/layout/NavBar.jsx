@@ -90,7 +90,7 @@ const NavBar = ({ user }) => {
               className="nav__login"
               onClick={() => setIsMenuOpen(false)}
             >
-              <Image
+              <img
                 src={
                   user && !user.err && user.image
                     ? API_ADDRESS + user.image

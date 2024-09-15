@@ -46,10 +46,10 @@ const Footer = () => {
         <Link href={"https://wa.me/+41766718852"}>
           <button className="support__button">
             {" "}
-            <Image
+            <img
               alt="support__icon"
-              width={500}
-              height={500}
+              width={100}
+              height={100}
               src={whatsapp}
               className="support__icon"
             />{" "}

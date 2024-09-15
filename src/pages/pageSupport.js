@@ -54,10 +54,10 @@ function Support() {
           <a href={"https://wa.me/+41772054730"}>
             <button className="support__button">
               {" "}
-              <Image
+              <img
                 src={whatsapp}
-                width={500}
-                height={500}
+                width={100}
+                height={100}
                 alt="support__icon"
                 className="support__icon"
               />{" "}
