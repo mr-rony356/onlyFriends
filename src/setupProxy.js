@@ -6,7 +6,7 @@ module.exports = function (app) {
     createProxyMiddleware({
       target:
         process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
-          ? "https://onlyfriends-89zn.onrender.com/"
+          ? "https://api.onlyfriend.ch/en"
           : "http://localhost:3000/",
       changeOrigin: true,
     }),
