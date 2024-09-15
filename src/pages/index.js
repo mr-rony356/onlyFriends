@@ -44,6 +44,7 @@ function HomePage({ user, attributes, initialAds, premiumAds }) {
   const [ads, setAds] = useState(initialAds);
   const [isCookiesPopupOpen, setIsCookiesPopupOpen] = useState(false);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
+
   const [filters, setFilters] = useState({
     regions: [],
     tags: [],
