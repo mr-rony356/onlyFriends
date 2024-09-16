@@ -6,29 +6,11 @@ import Select from "react-select";
 
 const FilterForm = (props) => {
   const { t } = useTranslation("common");
-  const { filters, setFilters } = props;
+  const { filters, setFilters, attributes } = props;
   const router = useRouter();
 
-  // Static demo options
-  const staticAttributes = {
-    regions: [
-      { value: "zurich", label: "Zurich" },
-      { value: "geneva", label: "Geneva" },
-      { value: "bern", label: "Bern" },
-    ],
-    tags: [
-      { value: "erotic", label: "Erotic" },
-      { value: "adult", label: "Adult" },
-      { value: "sex", label: "Sex" },
-    ],
-    offers: [
-      { value: "discounted", label: "Discounted" },
-      { value: "premium", label: "Premium" },
-      { value: "standard", label: "Standard" },
-    ],
-  };
-
   const updateFilters = (property, value) => {
+    // Update the state of the filters
     setFilters({
       ...filters,
       [property]: value,
@@ -38,17 +20,50 @@ const FilterForm = (props) => {
   const doFilter = (event) => {
     event.preventDefault();
 
+    // Construct the filtered URL
     let params = "";
     if (filters.regions && filters.regions.length > 0)
-      params += "/region/" + filters.regions.map((region) => region).join(",");
+      params +=
+        "/region/" +
+        filters.regions
+          .map(
+            (region) =>
+              region +
+              "-" +
+              attributes.find((attribute) => attribute.name === "regions")
+                .values[region],
+          )
+          .join(",");
     if (filters.tags && filters.tags.length > 0)
-      params += "/tag/" + filters.tags.map((tag) => tag).join(",");
+      params +=
+        "/tag/" +
+        filters.tags
+          .map(
+            (tag) =>
+              tag +
+              "-" +
+              attributes.find((attribute) => attribute.name === "tags").values[
+                tag
+              ],
+          )
+          .join(",");
     if (filters.offers && filters.offers.length > 0)
-      params += "/offer/" + filters.offers.map((offer) => offer).join(",");
+      params +=
+        "/offer/" +
+        filters.offers
+          .map(
+            (offer) =>
+              offer +
+              "-" +
+              attributes.find((attribute) => attribute.name === "offers")
+                .values[offer],
+          )
+          .join(",");
     if (filters.search)
       params += "/search/" + filters.search.replace(/[\s_-]+/g, "-");
     if (filters.verified) params += "/feature/" + filters.verified;
 
+    // Update the URL with the filter parameters
     router.push(params.length > 0 ? "/filter" + params : "/");
   };
 
@@ -61,9 +76,14 @@ const FilterForm = (props) => {
           filters.regions &&
           filters.regions.length > 0 &&
           filters.regions.map((filter) => {
-            return staticAttributes.regions.find(
-              (attr) => attr.value === filter,
-            );
+            return {
+              value: filter,
+              label:
+                attributes &&
+                attributes.length > 0 &&
+                attributes.find((attribute) => attribute.name === "regions")
+                  .values[filter],
+            };
           })
         }
         onChange={(value) =>
@@ -73,7 +93,13 @@ const FilterForm = (props) => {
           )
         }
         placeholder="Region"
-        options={staticAttributes.regions}
+        options={
+          attributes &&
+          attributes.length > 0 &&
+          attributes
+            .find((attribute) => attribute.name === "regions")
+            ?.values.map((value, i) => ({ value: i, label: value }))
+        }
         isMulti
       />
       <Select
@@ -83,7 +109,14 @@ const FilterForm = (props) => {
           filters.tags &&
           filters.tags.length > 0 &&
           filters.tags.map((filter) => {
-            return staticAttributes.tags.find((attr) => attr.value === filter);
+            return {
+              value: filter,
+              label:
+                attributes &&
+                attributes.length > 0 &&
+                attributes.find((attribute) => attribute.name === "tags")
+                  .values[filter],
+            };
           })
         }
         onChange={(value) =>
@@ -93,7 +126,13 @@ const FilterForm = (props) => {
           )
         }
         placeholder={t("rubricInput")}
-        options={staticAttributes.tags}
+        options={
+          attributes &&
+          attributes.length > 0 &&
+          attributes
+            .find((attribute) => attribute.name === "tags")
+            ?.values.map((value, i) => ({ value: i, label: value }))
+        }
         isMulti
       />
       <Select
@@ -103,9 +142,14 @@ const FilterForm = (props) => {
           filters.offers &&
           filters.offers.length > 0 &&
           filters.offers.map((filter) => {
-            return staticAttributes.offers.find(
-              (attr) => attr.value === filter,
-            );
+            return {
+              value: filter,
+              label:
+                attributes &&
+                attributes.length > 0 &&
+                attributes.find((attribute) => attribute.name === "offers")
+                  .values[filter],
+            };
           })
         }
         onChange={(value) =>
@@ -115,7 +159,13 @@ const FilterForm = (props) => {
           )
         }
         placeholder={t("offerInput")}
-        options={staticAttributes.offers}
+        options={
+          attributes &&
+          attributes.length > 0 &&
+          attributes
+            .find((attribute) => attribute.name === "offers")
+            ?.values.map((value, i) => ({ value: i, label: value }))
+        }
         isMulti
       />
       <Textfield

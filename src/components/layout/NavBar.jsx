@@ -152,7 +152,7 @@ const NavBar = ({ user }) => {
                   src={
                     user && !user.err && user.image
                       ? API_ADDRESS + user.image
-                      : "/assets/user-icon.png"
+                      : "https://only-friends-mrrony356s-projects.vercel.app/assets/user-icon.png"
                   }
                   width={25}
                   height={30}
